@@ -7,15 +7,15 @@ metadata:
 spec:
   containers:
     - name: web-app-container
-      image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1         # Replace with your web app image URL from Amazon ECR
+      image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1   # Replace with your web app image URL from Amazon ECR
       ports:
-        - containerPort: 80         # Port the web app listens on
+        - containerPort: 80   # Port the web app listens on
       env:
-        - name: DATABASE_HOST       # Host for the MySQL database (set in MySQL service)
-          value: mysql-service
-        - name: DATABASE_USER       # Database username
+        - name: DATABASE_HOST      # Host for the MySQL database (set in MySQL service)
+          value: mysql-service     # Use the MySQL service name here
+        - name: DATABASE_USER      # Database username
           value: root
-        - name: DATABASE_PASSWORD   # Database password
+        - name: DATABASE_PASSWORD  # Database password
           valueFrom:
             secretKeyRef:
               name: mysql-secret
