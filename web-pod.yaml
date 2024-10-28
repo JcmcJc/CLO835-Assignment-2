@@ -1,22 +1,21 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: web-app-pod
+  name: webapp-pod
   labels:
     app: web-app
 spec:
   containers:
-    - name: web-app-container
+    - name: webapp
       image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1   # Replace with your web app image URL from Amazon ECR
       ports:
         - containerPort: 80   # Port the web app listens on
       env:
-        - name: DATABASE_HOST      # Host for the MySQL database (set in MySQL service)
-          value: mysql-service     # Use the MySQL service name here
-        - name: DATABASE_USER      # Database username
-          value: root
-        - name: DATABASE_PASSWORD  # Database password
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: password
+        - name: DBHOST      # Host for the MySQL database (set in MySQL service)
+          value: mysql   # Use the MySQL service name here
+        - name: DBUSER     # Database username
+          value: "root"
+        - name: DBPWD  # Database password
+          value: "password"
+       - name: DBPORT
+          value: "3306"
