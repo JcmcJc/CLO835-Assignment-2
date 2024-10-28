@@ -12,5 +12,12 @@ spec:
       ports:
         - containerPort: 3306
       env:
-        - name: DBPWD         # Root password for MySQL
-          value: "password"
+        - name: MYSQL_ROOT_PASSWORD          # Root password for MySQL
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        - name: MYSQL_DATABASE               # Initial database to create
+          value: webapp_db
+  imagePullSecrets:
+    - name: ecr-secret

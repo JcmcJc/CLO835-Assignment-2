@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: webapp
-      image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1   # Replace with your web app image URL from Amazon ECR
+      image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1
       ports:
         - containerPort: 80   # Port the web app listens on
       env:
