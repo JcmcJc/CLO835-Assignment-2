@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-pod
+  labels:
+    app: web-app
+spec:
+  containers:
+    - name: webapp
+      image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1
+      ports:
+        - containerPort: 80   # Port the web app listens on
+      env:
+        - name: DBHOST      # Host for the MySQL database (set in MySQL service)
+          value: mysql   # Use the MySQL service name here
+        - name: DBUSER     # Database username
+          value: "root"
+        - name: DBPWD  # Database password
+          value: "password"
+       - name: DBPORT
+          value: "3306"
