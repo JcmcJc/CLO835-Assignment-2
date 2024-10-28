@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pink-app-deployment
+  namespace: web            # Specify your namespace here
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pink-app
+  template:
+    metadata:
+      labels:
+        app: pink-app
+    spec:
+      containers:
+      - name: pink-app-container
+        image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1  # Replace with your image URL
+        ports:
+        - containerPort: 8080                 # Container port
+        env:
+        - name: APP_COLOR
+          value: "pink"
+        - name: DBHOST
+          value: "mysql.web.svc.cluster.local"                 # Update to MySQL service IP or name
+        - name: DBPORT
+          value: "3306"
+        - name: DBUSER
+          value: "root"
+        - name: DBPWD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret              # Kubernetes Secret storing MySQL password
+              key: password
