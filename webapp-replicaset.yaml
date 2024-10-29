@@ -5,7 +5,7 @@ metadata:
   labels:
     app: employees
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: employees
@@ -20,7 +20,7 @@ spec:
         - name: webapp
           image: 510280374120.dkr.ecr.us-east-1.amazonaws.com/clo835-assignment2:webapp-v0.1
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           env:
             - name: DBHOST
               value: "mysql.web.svc.cluster.local"
